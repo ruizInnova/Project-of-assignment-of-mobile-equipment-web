@@ -10,7 +10,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatSelectModule, MatRadioModule, MatCardModule, MatTooltipModule } from '@angular/material';
 import { MyTableTeamComponent } from './my-table-team/my-table-team.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormAddMobilEquipmentComponent } from './form-add-mobil-equipment/form-add-mobil-equipment.component';
 import { FrmAddMobilEquipmentComponent } from './frm-add-mobil-equipment/frm-add-mobil-equipment.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MyEquipmentComponent } from './my-equipment/my-equipment.component';
@@ -20,9 +19,8 @@ import { MyEquipmentComponent } from './my-equipment/my-equipment.component';
     AppComponent,
     NavbarComponent,
     MyTableTeamComponent,
-    FormAddMobilEquipmentComponent,
     FrmAddMobilEquipmentComponent,
-    MyEquipmentComponent
+    MyEquipmentComponent,
   ],
   imports: [
     BrowserModule,

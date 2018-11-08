@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { EquipmentService } from '../services/equipment.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-frm-add-mobil-equipment',
   templateUrl: './frm-add-mobil-equipment.component.html',
   styleUrls: ['./frm-add-mobil-equipment.component.scss'],
 })
-export class FrmAddMobilEquipmentComponent {
+export class FrmAddMobilEquipmentComponent implements OnInit {
+  isNewEquipment = true;
   mobilForm = this.fb.group({
     Code: [null, Validators.required],
     Email: [null, Validators.required],
@@ -22,73 +25,49 @@ export class FrmAddMobilEquipmentComponent {
     Cost: [null, Validators.required]
   });
 
-  hasUnitNumber = false;
+  line = [{company: 'Telcel'}, {company: 'Telcel'}, {company: 'Telcel'}] ;
 
-  states = [
-    {name: 'Alabama', abbreviation: 'AL'},
-    {name: 'Alaska', abbreviation: 'AK'},
-    {name: 'American Samoa', abbreviation: 'AS'},
-    {name: 'Arizona', abbreviation: 'AZ'},
-    {name: 'Arkansas', abbreviation: 'AR'},
-    {name: 'California', abbreviation: 'CA'},
-    {name: 'Colorado', abbreviation: 'CO'},
-    {name: 'Connecticut', abbreviation: 'CT'},
-    {name: 'Delaware', abbreviation: 'DE'},
-    {name: 'District Of Columbia', abbreviation: 'DC'},
-    {name: 'Federated States Of Micronesia', abbreviation: 'FM'},
-    {name: 'Florida', abbreviation: 'FL'},
-    {name: 'Georgia', abbreviation: 'GA'},
-    {name: 'Guam', abbreviation: 'GU'},
-    {name: 'Hawaii', abbreviation: 'HI'},
-    {name: 'Idaho', abbreviation: 'ID'},
-    {name: 'Illinois', abbreviation: 'IL'},
-    {name: 'Indiana', abbreviation: 'IN'},
-    {name: 'Iowa', abbreviation: 'IA'},
-    {name: 'Kansas', abbreviation: 'KS'},
-    {name: 'Kentucky', abbreviation: 'KY'},
-    {name: 'Louisiana', abbreviation: 'LA'},
-    {name: 'Maine', abbreviation: 'ME'},
-    {name: 'Marshall Islands', abbreviation: 'MH'},
-    {name: 'Maryland', abbreviation: 'MD'},
-    {name: 'Massachusetts', abbreviation: 'MA'},
-    {name: 'Michigan', abbreviation: 'MI'},
-    {name: 'Minnesota', abbreviation: 'MN'},
-    {name: 'Mississippi', abbreviation: 'MS'},
-    {name: 'Missouri', abbreviation: 'MO'},
-    {name: 'Montana', abbreviation: 'MT'},
-    {name: 'Nebraska', abbreviation: 'NE'},
-    {name: 'Nevada', abbreviation: 'NV'},
-    {name: 'New Hampshire', abbreviation: 'NH'},
-    {name: 'New Jersey', abbreviation: 'NJ'},
-    {name: 'New Mexico', abbreviation: 'NM'},
-    {name: 'New York', abbreviation: 'NY'},
-    {name: 'North Carolina', abbreviation: 'NC'},
-    {name: 'North Dakota', abbreviation: 'ND'},
-    {name: 'Northern Mariana Islands', abbreviation: 'MP'},
-    {name: 'Ohio', abbreviation: 'OH'},
-    {name: 'Oklahoma', abbreviation: 'OK'},
-    {name: 'Oregon', abbreviation: 'OR'},
-    {name: 'Palau', abbreviation: 'PW'},
-    {name: 'Pennsylvania', abbreviation: 'PA'},
-    {name: 'Puerto Rico', abbreviation: 'PR'},
-    {name: 'Rhode Island', abbreviation: 'RI'},
-    {name: 'South Carolina', abbreviation: 'SC'},
-    {name: 'South Dakota', abbreviation: 'SD'},
-    {name: 'Tennessee', abbreviation: 'TN'},
-    {name: 'Texas', abbreviation: 'TX'},
-    {name: 'Utah', abbreviation: 'UT'},
-    {name: 'Vermont', abbreviation: 'VT'},
-    {name: 'Virgin Islands', abbreviation: 'VI'},
-    {name: 'Virginia', abbreviation: 'VA'},
-    {name: 'Washington', abbreviation: 'WA'},
-    {name: 'West Virginia', abbreviation: 'WV'},
-    {name: 'Wisconsin', abbreviation: 'WI'},
-    {name: 'Wyoming', abbreviation: 'WY'}
-  ];
-
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private equipmentService: EquipmentService, private router: Router) {}
+  ngOnInit(): void {
+    const equipmentToUpdate = JSON.parse(localStorage.getItem('equipment'));
+    console.log(equipmentToUpdate);
+    if (equipmentToUpdate !== null) {
+      this.isNewEquipment = false;
+      this.mobilForm.setValue(equipmentToUpdate);
+      localStorage.clear();
+    }
+  }
 
   onSubmit() {
-    alert('Thanks!');
+    console.log(this.mobilForm.value);
+    if (this.isNewEquipment) {
+      this.equipmentService
+        .addEquipment(this.mobilForm.value)
+        .subscribe(
+          response => {
+            console.log('OK: ', response);
+            this.mobilForm.reset();
+            alert('Se dio de alta a tu nuevo amigo');
+            this.router.navigate(['/equiposAsignados']);
+          },
+          error => {
+            console.log('ERROR: ', error);
+          }
+        );
+    } else {
+      this.equipmentService
+        .updateEquipment(this.mobilForm.value)
+        .subscribe(
+          response => {
+            console.log('OK: ', response);
+            this.mobilForm.reset();
+            this.router.navigate(['/equiposAsignados']);
+          },
+          error => {
+            console.log('ERROR: ', error);
+          }
+        );
+    }
   }
+
 }

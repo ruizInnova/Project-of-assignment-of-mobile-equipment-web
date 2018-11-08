@@ -11,6 +11,12 @@ export class EquipmentService {
     getEquipment() {
       return this.http.get(this.apiUrl);
     }
-
+    addEquipment(equipment) {
+      return this.http.post(this.apiUrl, equipment);
+    }
+    updateEquipment(equipment) {
+      return this.http.put(this.apiUrl + '/' + equipment.id, equipment);
+    }
 }
+
 
