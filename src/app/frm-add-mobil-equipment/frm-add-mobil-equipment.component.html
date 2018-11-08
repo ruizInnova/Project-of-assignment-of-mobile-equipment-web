@@ -1,0 +1,120 @@
+<form [formGroup]="mobilForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Asignar equipo movil</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Código" formControlName="Code">
+            <mat-error *ngIf="mobilForm.controls['Code'].hasError('required')">
+              El código de personal es requerido <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" formControlName="Email">
+            <mat-error *ngIf="mobilForm.controls['Email'].hasError('required')">
+              El email es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombre(s)" formControlName="Name">
+            <mat-error *ngIf="mobilForm.controls['Name'].hasError('required')">
+              El nombre de personal es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Apellidos" formControlName="LastName">
+            <mat-error *ngIf="mobilForm.controls['LastName'].hasError('required')">
+              El apellido es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Domicilio" formControlName="Address">
+            <mat-error *ngIf="mobilForm.controls['Address'].hasError('required')">
+              El domicilio de personal es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="IMEI del equipo" formControlName="IMEI">
+            <mat-error *ngIf="mobilForm.controls['IMEI'].hasError('required')">
+              El IMEI del equipo movil <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Modelo del equipo" formControlName="Model">
+            <mat-error *ngIf="mobilForm.controls['Model'].hasError('required')">
+              El modelo del equipo movil <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Marca del equipo" formControlName="Brand">
+            <mat-error *ngIf="mobilForm.controls['Brand'].hasError('required')">
+              La marca del equipo movil <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Número del equipo" formControlName="NumberPhone">
+            <mat-error *ngIf="mobilForm.controls['NumberPhone'].hasError('required')">
+              El número del equipo es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Red movil" formControlName="Network">
+            <mat-error *ngIf="mobilForm.controls['Network'].hasError('required')">
+              La red movil del equipo es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Número de chip" formControlName="Chip">
+            <mat-error *ngIf="mobilForm.controls['Chip'].hasError('required')">
+              El número de chip es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Costo del equipo" formControlName="Cost">
+            <mat-error *ngIf="mobilForm.controls['Cost'].hasError('required')">
+              El costo del equipo es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Guardar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
