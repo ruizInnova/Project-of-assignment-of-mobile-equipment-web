@@ -7,12 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 // tslint:disable-next-line:max-line-length
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatSelectModule, MatRadioModule, MatCardModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatSelectModule, MatRadioModule, MatCardModule, MatTooltipModule } from '@angular/material';
 import { MyTableTeamComponent } from './my-table-team/my-table-team.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormAddMobilEquipmentComponent } from './form-add-mobil-equipment/form-add-mobil-equipment.component';
 import { FrmAddMobilEquipmentComponent } from './frm-add-mobil-equipment/frm-add-mobil-equipment.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MyEquipmentComponent } from './my-equipment/my-equipment.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     MyTableTeamComponent,
     FormAddMobilEquipmentComponent,
-    FrmAddMobilEquipmentComponent
+    FrmAddMobilEquipmentComponent,
+    MyEquipmentComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTooltipModule
 
   ],
   providers: [],

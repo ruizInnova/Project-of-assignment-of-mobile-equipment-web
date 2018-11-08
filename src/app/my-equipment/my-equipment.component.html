@@ -1,0 +1,56 @@
+<div class="mat-elevation-z8">
+    <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
+
+        <ng-container matColumnDef="Code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+            <td mat-cell *matCellDef="let row">{{row.Code}}</td>
+        </ng-container>
+        <!--   code, Name, telefono, red corta, emai, marca y modelo -->
+        <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre(s)</th>
+            <td mat-cell *matCellDef="let row">{{row.Name}} {{row.LastName}}</td>
+        </ng-container>
+        <ng-container matColumnDef="NumberPhone">
+
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>No. Teléfono</th>
+            <td mat-cell *matCellDef="let row">{{row.NumberPhone}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Network">
+
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Red Corta</th>
+            <td mat-cell *matCellDef="let row">{{row.Network}}</td>
+        </ng-container>
+        <ng-container matColumnDef="IMEI">
+
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>IMEI</th>
+            <td mat-cell *matCellDef="let row">{{row.IMEI}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Brand">
+
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Marca</th>
+            <td mat-cell *matCellDef="let row">{{row.Brand}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Model">
+
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Model</th>
+            <td mat-cell *matCellDef="let row">{{row.Model}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+            <td mat-cell *matCellDef="let row">
+                <button matTooltip="Editar" [matTooltipPosition]="'left'" mat-icon-button color="basic" (click)="update(row)">
+            <mat-icon aria-label="Editar">edit</mat-icon>
+          </button>
+                <button matTooltip="Elimnar" [matTooltipPosition]="'right'" mat-icon-button color="warn" (click)="delete(row)">
+            <mat-icon aria-label="Eliminar">delete</mat-icon>
+          </button>
+
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+</div>
