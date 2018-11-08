@@ -117,8 +117,11 @@
                 </div>
             </div>
         </mat-card-content>
+
         <mat-card-actions>
-            <button mat-raised-button color="primary" type="submit">Guardar</button>
+            <button *ngIf="isNewEquipment" mat-raised-button color="primary" type="submit">Enviar</button>
+            <button *ngIf="!isNewEquipment" mat-raised-button color="primary" type="submit">Actualizar</button>
         </mat-card-actions>
+
     </mat-card>
 </form>

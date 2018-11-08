@@ -17,6 +17,10 @@ export class EquipmentService {
     updateEquipment(equipment) {
       return this.http.put(this.apiUrl + '/' + equipment.id, equipment);
     }
+
+    deleteEquipment(idEquipment) {
+      return this.http.delete(this.apiUrl + '/' + idEquipment);
+    }
 }
 
 
