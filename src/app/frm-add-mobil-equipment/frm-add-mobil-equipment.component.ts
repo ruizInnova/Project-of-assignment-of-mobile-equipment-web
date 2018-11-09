@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { EquipmentService } from '../services/equipment.service';
 import { Router } from '@angular/router';
 
@@ -15,14 +15,15 @@ export class FrmAddMobilEquipmentComponent implements OnInit {
     Email: [null, Validators.required],
     Name: [null, Validators.required],
     LastName: [null, Validators.required],
-    Address: null,
+    Address: [null],
     IMEI: [null, Validators.required],
     Model: [null, Validators.required],
     Brand: [null, Validators.required],
     NumberPhone: [null, Validators.required],
     Network: [null, Validators.required],
     Chip: [null, Validators.required],
-    Cost: [null, Validators.required]
+    Cost: [null, Validators.required],
+    id: new FormControl(),
   });
 
   line = [{company: 'Telcel'}, {company: 'Telcel'}, {company: 'Telcel'}] ;
