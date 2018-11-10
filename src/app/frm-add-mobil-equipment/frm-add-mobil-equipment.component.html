@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field class="full-width">
-                        <input matInput placeholder="Código" formControlName="Code">
+                        <input matInput placeholder="Código" formControlName="Code"  autofocus="autofocus">
                         <mat-error *ngIf="mobilForm.controls['Code'].hasError('required')">
                             El código de personal es requerido <strong>requerido</strong>
                         </mat-error>
@@ -121,6 +121,7 @@
         <mat-card-actions>
             <button *ngIf="isNewEquipment" mat-raised-button color="primary" type="submit">Enviar</button>
             <button *ngIf="!isNewEquipment" mat-raised-button color="primary" type="submit">Actualizar</button>
+            <button *ngIf="!isNewEquipment" mat-raised-button color="primary" type="button" (click)="donwloadPdf()">Descargar PDF</button>
         </mat-card-actions>
 
     </mat-card>

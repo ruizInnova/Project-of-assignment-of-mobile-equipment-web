@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,9 @@ export class EquipmentService {
       return this.http.post(this.apiUrl, equipment);
     }
     updateEquipment(equipment) {
-      return this.http.put(this.apiUrl + '/' + equipment.id, equipment);
+      return this.http.put(
+        this.apiUrl + '/' + equipment.id,
+        equipment);
     }
 
     deleteEquipment(idEquipment) {

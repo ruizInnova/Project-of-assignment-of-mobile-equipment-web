@@ -11,15 +11,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./my-equipment.component.scss'],
 })
 export class MyEquipmentComponent implements OnInit {
-  persons = new BehaviorSubject<any[]>([]);
-  dataSource = new PersonDataSource(this.persons);
+  equipments = new BehaviorSubject<any[]>([]);
+  dataSource = new EquipmentDataSource(this.equipments);
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['Code', 'Name', 'NumberPhone', 'Network', 'IMEI', 'Brand', 'Model', 'actions' ];
 
-  constructor(private equipmentService: EquipmentService, private router: Router) {
-    this.equipmentService.getEquipment()
-                         .subscribe((persons: any[]) => {
-                           this.persons.next(persons);
+  constructor(
+    private equipmentService: EquipmentService,
+    private router: Router
+    ) {
+    this.equipmentService
+        .getEquipment()
+                         .subscribe((equipments: any[]) => {
+                           this.equipments.next(equipments);
                          });
   }
 
@@ -27,7 +31,7 @@ export class MyEquipmentComponent implements OnInit {
   }
 
 update(person) {
-  localStorage.setItem('equipment', JSON.stringify(person));
+  localStorage.setItem('mobil-equipment', JSON.stringify(person));
   this.router.navigate(['/frmAddEquipment']);
 }
 
@@ -36,11 +40,11 @@ delete(person) {
     response => {
       console.log('OK: ', response);
 
-      const tmp = this.persons.value.filter(
+      const tmp = this.equipments.value.filter(
         p => p.id !== person.id
       );
 
-      this.persons.next(tmp);
+      this.equipments.next(tmp);
     },
     error => {
       console.log('ERROR: ', error);
@@ -48,16 +52,16 @@ delete(person) {
   );
 }
 }
-export class PersonDataSource extends DataSource<any> {
-  persons: BehaviorSubject<any>;
+export class EquipmentDataSource extends DataSource<any> {
+  equipments: BehaviorSubject<any>;
 
-  constructor(persons: BehaviorSubject<any>) {
+  constructor(equipments: BehaviorSubject<any>) {
     super();
-    this.persons = persons;
+    this.equipments = equipments;
   }
 
   connect(): Observable<any> {
-    return this.persons;
+    return this.equipments;
   }
 
   disconnect() {}
