@@ -19,7 +19,7 @@ export class FrmAddMobilEquipmentComponent implements OnInit {
     Email: [null, Validators.required],
     Name: [null, Validators.required],
     LastName: [null, Validators.required],
-    Address: null,
+    Address: [null],
     IMEI: [null, Validators.required],
     Model: [null, Validators.required],
     Brand: [null, Validators.required],
